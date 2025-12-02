@@ -5,49 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Em Manutenção</title>
     <style>
+        /* Estilos base */
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column; /* Necessário para posicionar o footer e o conteúdo */
+            justify-content: space-between; /* Distribui o espaço entre o topo e o fundo */
             align-items: center;
             min-height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
             color: #333;
             background-color: #f4f4f4;
-
-            background-image: url('https://imgur.com/qQNWBD6.jpg'); 
-
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed; 
-
+            /* O fundo real é definido no ::before abaixo */
         }
 
+        /* Melhor método para um fundo desfocado que não afete o conteúdo (o texto) */
         body::before {
             content: '';
-            position: fixed; 
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            /* Define a imagem e as propriedades de cobertura para o pseudo-elemento */
             background-image: url('https://imgur.com/qQNWBD6.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            z-index: -1; 
-            
-            filter: blur(5px); 
+            z-index: -1; /* Coloca o fundo atrás do conteúdo principal */
+            filter: blur(5px); /* Desfoque */
         }
         
+        /* Container Principal (o texto de manutenção) */
         .container {
+            flex-grow: 1; /* Permite que o container ocupe o espaço extra no meio */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.85); /* Fundo branco semi-transparente */
+            
+            /* Estilos para o bloco de texto */
+            background-color: rgba(255, 255, 255, 0.85);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 80%; /* Limita a largura do container */
+            margin: auto;
             z-index: 1; 
         }
+
         h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
@@ -55,12 +62,56 @@
         p {
             font-size: 1.2rem;
         }
+
+        /* ⚠️ Estilos para o Rodapé ⚠️ */
+        footer {
+            width: 100%;
+            padding: 15px 0;
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro semi-transparente */
+            color: #ffffff;
+            text-align: center;
+            font-size: 0.9rem;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1; /* Garante que fique por cima do fundo desfocado */
+            margin-top: auto; /* Empurra o footer para o fundo da página (graças ao flex-direction: column) */
+        }
+
+        .contact-info {
+            margin-top: 5px;
+        }
+
+        .contact-info a {
+            color: #ffffff;
+            text-decoration: none; /* Remove sublinhado dos links */
+            margin: 0 10px;
+            padding: 2px 0;
+            display: inline-block;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+            color: #ccc;
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Estamos em Manutenção 🚧</h1>
-        <p>Pedimos desculpa pelo transtorno. Voltaremos em breve!</p>
+        <div>
+            <h1>Estamos em Manutenção 🚧</h1>
+            <p>Pedimos desculpa pelo transtorno. Voltaremos em breve!</p>
+        </div>
     </div>
-</body>
+    
+    <footer>
+        <p>&copy; 2025 **VirtuLuso**. Todos os direitos reservados.</p>
+        <div class="contact-info">
+            <a href="tel:+351912345678">📞 +351 912 345 678</a>
+            |
+            <a href="mailto:contacto@virtuluso.pt">📧 contacto@virtuluso.pt</a>
+            |
+            <a href="http://www.virtuluso.pt" target="_blank">🌐 www.virtuluso.pt</a>
+        </div>
+    </footer>
+    </body>
 </html>
